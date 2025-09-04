@@ -23,11 +23,19 @@ if [[ -n "$DB_HOST" && -n "$DB_NAME" && -n "$DB_USER" && -n "$DB_PASSWORD" ]]; t
   }
 }
 EOF
-  echo "servers.json generato per ${DB_HOST}"
+  echo "servers.json generated for ${DB_HOST}"
 fi
 
 # Make sure that the data dir exists (this will mount a persistent disk)
 mkdir -p /var/lib/pgadmin
 
 # Start the official docker image entrypoint
-exec /entrypoint.sh
+if [ -f /entrypoint.sh ]; then
+  exec /entrypoint.sh
+  #chmod +x /entrypoint.sh
+elif [ -f /usr/local/bin/docker-entrypoint.sh ]; then
+  exec /usr/local/bin/docker-entrypoint.sh
+else
+  echo "File /entrypoint.sh not found!" >&2
+  exit 1
+fi
