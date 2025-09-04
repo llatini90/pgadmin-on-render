@@ -2,9 +2,13 @@
 # pgAdmin image
 FROM dpage/pgadmin4:latest
 
+#USER root
+
 # - PORT mapping -> PGADMIN_LISTEN_PORT (required on Render)
 COPY start.sh /start.sh
-RUN chmod +x /start.sh
+#RUN chmod +x /start.sh
+
+#USER pgadmin
 
 # Use fake credentials only and pass the real ones via env on Render.
 ENV PGADMIN_DEFAULT_EMAIL=admin@example.com \
