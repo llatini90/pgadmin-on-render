@@ -8,12 +8,12 @@ services:
     dockerfilePath: ./Dockerfile
     autoDeploy: true
 
-    envVars:
+    envVars: []
       # pgAdmin Login credentials
-      - key: PGADMIN_DEFAULT_EMAIL
-        sync: false   # this will not save the credentials in the git repo
-      - key: PGADMIN_DEFAULT_PASSWORD
-        sync: false
+      #- key: PGADMIN_DEFAULT_EMAIL
+      #  sync: false   # this will not save the credentials in the git repo
+      #- key: PGADMIN_DEFAULT_PASSWORD
+      #  sync: false
 
       # server Postgres autoconfig
       # Copy the following values from the Postegres SQL DB on Render (External Connection)
