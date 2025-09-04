@@ -28,7 +28,7 @@ services:
       #- key: DB_PORT
       #  value: "5432"
 
-    disks:
-      - name: pgadmin-data
-        mountPath: /var/lib/pgadmin
-        sizeGB: 1
+    #disks:
+    #  - name: pgadmin-data
+    #    mountPath: /var/lib/pgadmin
+    #    sizeGB: 1
