@@ -8,7 +8,7 @@ FROM dpage/pgadmin4:latest
 #COPY start.sh /start.sh
 #RUN chmod +x /start.sh
 
-COPY server.json /pgadmin4/server.json
+#COPY server.json /pgadmin4/server.json
 
 #USER pgadmin
 
@@ -18,6 +18,6 @@ ENV PGADMIN_DEFAULT_EMAIL=admin@example.com \
     PGADMIN_LISTEN_ADDRESS=0.0.0.0
 
 # temporary PORT. Render will $PORT or we can pass it to pgAdmin by using start.sh command line args
-EXPOSE 8080
+EXPOSE 80
 
 #ENTRYPOINT ["/start.sh"]

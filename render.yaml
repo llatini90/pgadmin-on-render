@@ -1,7 +1,7 @@
 
 services:
   - type: web
-    name: pgadmin-web
+    name: pgadmin-on-render-ll
     env: docker
     plan: free
     region: oregon  # cambia se serve
@@ -17,16 +17,16 @@ services:
 
       # server Postgres autoconfig
       # Copy the following values from the Postegres SQL DB on Render (External Connection)
-      - key: DB_HOST
-        sync: false
-      - key: DB_NAME
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_PORT
-        value: "5432"
+      #- key: DB_HOST
+      #  sync: false
+      #- key: DB_NAME
+      #  sync: false
+      #- key: DB_USER
+      #  sync: false
+      #- key: DB_PASSWORD
+      #  sync: false
+      #- key: DB_PORT
+      #  value: "5432"
 
     disks:
       - name: pgadmin-data
