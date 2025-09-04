@@ -5,8 +5,8 @@ export PGADMIN_LISTEN_PORT="${PORT:-80}"
 SSL_MODE="${DB_SSLMODE:-require}"
 
 if [[ -n "$DB_HOST" && -n "$DB_NAME" && -n "$DB_USER" ]]; then
-  mkdir -p /var/lib/pgadmin4
-  cat > /var/lib/pgadmin4/servers.json <<EOF
+  mkdir -p /pgadmin4
+  cat > /pgadmin4/servers.json <<EOF
 {
   "Servers": {
     "Render-Postgres": {

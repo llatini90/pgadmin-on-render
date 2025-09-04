@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "Render-Postgres": {
+      "Name": "Render-Postgres",
+      "Group": "Render",
+      "Host": "DB_HOST",
+      "Port": "DB_PORT",
+      "MaintenanceDB": "DB_NAME",
+      "Username": "DB_USER",
+      "Password": "DB_PASSWORD",
+      "SSLMode": "require"
+    }
+  }
+}
