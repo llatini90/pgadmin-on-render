@@ -1,0 +1,36 @@
+
+services:
+  - type: web
+    name: pgadmin-web
+    env: docker
+    plan: free
+    region: oregon  # cambia se serve
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+
+    envVars:
+      # pgAdmin Login credentials
+      - key: PGADMIN_DEFAULT_EMAIL
+        sync: false   # this will not save the credentials in the git repo
+      - key: PGADMIN_DEFAULT_PASSWORD
+        sync: false
+
+      # server Postgres autoconfig
+      # Copy the following values from the Postegres SQL DB on Render (External Connection)
+      - key: DB_HOST
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_SSLMODE
+        value: "require"
+
+    disks:
+      - name: pgadmin-data
+        mountPath: /var/lib/pgadmin
+        sizeGB: 1
