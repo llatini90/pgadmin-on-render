@@ -1,12 +1,10 @@
-
 #!/usr/bin/env bash
 set -e
 
-# Render sets $PORT; pgAdmin will use PGADMIN_LISTEN_PORT
 export PGADMIN_LISTEN_PORT="${PORT:-80}"
+SSL_MODE="${DB_SSLMODE:-require}"
 
-# servers.json will be used if you pass DB variables via Render env settings
-if [[ -n "$DB_HOST" && -n "$DB_NAME" && -n "$DB_USER" && -n "$DB_PASSWORD" ]]; then
+if [[ -n "$DB_HOST" && -n "$DB_NAME" && -n "$DB_USER" ]]; then
   mkdir -p /pgadmin4
   cat > /pgadmin4/servers.json <<EOF
 {
@@ -18,21 +16,17 @@ if [[ -n "$DB_HOST" && -n "$DB_NAME" && -n "$DB_USER" && -n "$DB_PASSWORD" ]]; t
       "Port": ${DB_PORT:-5432},
       "MaintenanceDB": "${DB_NAME}",
       "Username": "${DB_USER}",
-      "SSLMode": "${DB_SSLMODE:-require}"
+      "SSLMode": "${SSL_MODE}"
     }
   }
 }
 EOF
-  echo "servers.json generated for ${DB_HOST}"
 fi
 
-# Make sure that the data dir exists (this will mount a persistent disk)
 mkdir -p /var/lib/pgadmin
 
-# Start the official docker image entrypoint
 if [ -f /entrypoint.sh ]; then
   exec /entrypoint.sh
-  #chmod +x /entrypoint.sh
 elif [ -f /usr/local/bin/docker-entrypoint.sh ]; then
   exec /usr/local/bin/docker-entrypoint.sh
 else
